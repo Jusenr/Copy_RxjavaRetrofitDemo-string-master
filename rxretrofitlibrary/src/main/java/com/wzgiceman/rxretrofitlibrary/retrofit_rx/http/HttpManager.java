@@ -61,6 +61,7 @@ public class HttpManager {
         /*创建retrofit对象*/
         final Retrofit retrofit = new Retrofit.Builder()
                 .client(builder.build())
+//                .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(basePar.getBaseUrl())
@@ -73,7 +74,7 @@ public class HttpManager {
                 /*异常处理*/
                 .onErrorResumeNext(new ExceptionFunc())
                 /*生命周期管理*/
-                //.compose(appCompatActivity.get().bindToLifecycle())
+//                .compose(appCompatActivity.get().bindToLifecycle())
                 //Note:手动设置在activity onDestroy的时候取消订阅
                 .compose(appCompatActivity.get().bindUntilEvent(ActivityEvent.DESTROY))
                 /*返回数据统一判断*/
